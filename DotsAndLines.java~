@@ -9,11 +9,11 @@ public class DotsAndLines
     
     System.out.println("Do you want to play an AI?");
     String response = aa.nextLine();
-    
-//if (response.equals("yes" || "Yes")
+//    
+//if (response.equals("yes")
 //      twoPlayer = false;
 //
-//if (response.equals("no" || "No")
+//if (response.equals("no")
 //      twoPlayer = true;
     
     
@@ -23,17 +23,14 @@ public class DotsAndLines
     }
     
     
-    System.out.println("How many rows do you want there to be?");
-    int rows = aa.nextInt();
-    System.out.println("How many columns do you want there to be?");
-    int columns = aa.nextInt();
+    System.out.println("How many rows and columns do you want there to be?");
+    int rowcol = aa.nextInt();
     
 //rows = Integer.parseInt(rows);
 //columns = Integer.parseInt(columns);
     
-    int[][] a = new int[ rows ][ columns ];
-    
-    System.out.println(a);
+    //int[][] a = new int[ rows ][ columns ];
+    //talk to nick, leo, bobby
     
   }
 }

@@ -2,6 +2,21 @@ public class LineDraw
 {
   public static void main (String[] args)
   {
+    boolean box = false;
+    String player1 = "P1";
+    String player2 = "P2";
+    String lastPlayer;
+    int turn = 1;
+    //add incrementing turn code
+    if(turn % 2 == 0)
+    {
+      lastPlayer = player2;
+    }
+    else 
+    {
+      lastPlayer = player1;
+    }
+        
 //    System.out.println();
 //    
 //    System.out.println("               " + "  " + "0 " + "1 " + "2 " + "3 ");
@@ -73,24 +88,24 @@ public class LineDraw
     System.out.println();    
     System.out.println("               " + "  " + "0   " + "1   " + "2   " + "3   " + "4   " );
     
-    System.out.println("               " + "0 " + ".   " + ".   " + ".   " + ".   " + ".   " );
+    System.out.println("               " + "A " + ".   " + ".   " + ".   " + ".   " + ".   " );
     System.out.println("               " + "  " + "    " + "    " + "    " + "    " + "    " );
     
-    System.out.println("               " + "1 " + ".   " + ".   " + ".   " + ".   " + ".   " );
+    System.out.println("               " + "B " + ".   " + ".   " + ".   " + ".   " + ".   " );
     System.out.println("               " + "  " + "    " + "    " + "    " + "    " + "    " );
     
-    System.out.println("               " + "2 " + ".   " + ".   " + ".   " + ".   " + ".   " );
+    System.out.println("               " + "C " + ".   " + ".   " + ".   " + ".   " + ".   " );
     System.out.println("               " + "  " + "    " + "    " + "    " + "    " + "    " );
     
-    System.out.println("               " + "3 " + ".   " + ".   " + ".   " + ".   " + ".   " );
+    System.out.println("               " + "D " + ".   " + ".   " + ".   " + ".   " + ".   " );
     System.out.println("               " + "  " + "    " + "    " + "    " + "    " + "    " );
     
-    System.out.println("               " + "4 " + ".   " + ".   " + ".   " + ".   " + ".   " );
+    System.out.println("               " + "E " + ".   " + ".   " + ".   " + ".   " + ".   " );
     System.out.println("               " + "  " + "    " + "    " + "    " + "    " + "    " );
     
     
     
-    //print player 1 and player 2 score
+    //print player 1 and player 2 score by incrementing string and finding how many As or Bs there are
     //print player turn
     
     String t[][] = { 
@@ -118,18 +133,20 @@ public class LineDraw
     String g[][] = { 
       { "               ", "   ", "0   ", "1   ", "2   ", "3   ", "4   \n" },
       { "               ", "   ", "    ", "    ", "    ", "    ", "    \n" },
-      { "               ", "0  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },  
+      { "               ", "A  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },  
       { "               ", "   ", "    ", "    ", "    ", "    ", "    \n" },
-      { "               ", "1  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
+      { "               ", "B  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
       { "               ", "   ", "    ", "    ", "    ", "    ", "    \n" },
-      { "               ", "2  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
+      { "               ", "C  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
       { "               ", "   ", "    ", "    ", "    ", "    ", "    \n" },
-      { "               ", "3  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
+      { "               ", "D  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
       { "               ", "   ", "    ", "    ", "    ", "    ", "    \n" },
-      { "               ", "4  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
+      { "               ", "E  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
       { "               ", "   ", "    ", "    ", "    ", "    ", "    \n" },
       
     }; 
+    
+
     
     for(int i = 0; i<g.length; i++)
       for(int j = 0; j<g[0].length; j++)
@@ -137,7 +154,23 @@ public class LineDraw
       System.out.print(g[i][j]);
     }
     
-    System.out.println(g[2][1]);
+    g[2][2] = ".___";
+    g[4][2] = ".___";
+    g[3][2] = "|   ";
+    g[3][3] = "|   ";
+    
+    if (g[2][2] == ".___" && g[4][2] == ".___" && g[3][2] == "|   " && g[3][3] == "|   ")
+    {
+      g[3][2] = "|" + lastPlayer + " ";
+    }
+    
+    
+     for(int i = 0; i<g.length; i++)
+      for(int j = 0; j<g[0].length; j++)
+    {
+      System.out.print(g[i][j]);
+    }
+ 
     
   }
 }

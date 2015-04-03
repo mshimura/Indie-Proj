@@ -17,6 +17,7 @@ public class DotsAndLines
       {  "   ", "    ", "    ", "    ", "    ", "    \n" },
       {  "E  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
       {  "   ", "    ", "    ", "    ", "    ", "    \n" },
+      {  "   ", "    ", "    ", "    ", "    ", "    \n" }
       
     }; 
     
@@ -30,7 +31,11 @@ public class DotsAndLines
     String move = "";
     int turn = 1;
     boolean won = false;
-    
+    boolean lastMove = false;
+    int p1Counter = 0;
+    int p2Counter = 0;
+    boolean hor = false;
+    boolean vert = false;
     
     
 //    if (g[2][2] == ".___" && g[4][2] == ".___" && g[3][2] == "|   " && g[3][3] == "|   ")
@@ -59,6 +64,13 @@ public class DotsAndLines
 //    int rowcol = aa.nextInt();
     
     // if(twoPlayer == true)
+  System.out.println(g[10][1]);
+  System.out.println(g[10][2]);
+  System.out.println(g[10][3]);
+  System.out.println(g[10][4]);
+    
+    
+    
     System.out.println("Here is the gameboard:");
     System.out.println();
     System.out.println("It is turn number " + turn);
@@ -148,6 +160,8 @@ public class DotsAndLines
         g[3][3]= "|   ";
       if(move.equals("A3B3"))
         g[3][4]= "|   ";
+      if(move.equals("A4B4"))
+        g[3][5]= "|   \n";
       
       if(move.equals("B0C0"))
         g[5][1]= "|   ";
@@ -157,6 +171,8 @@ public class DotsAndLines
         g[5][3]= "|   ";
       if(move.equals("B3C3"))
         g[5][4]= "|   ";
+      if(move.equals("B4C4"))
+        g[5][5]= "|   \n";
       
       if(move.equals("C0D0"))
         g[7][1]= "|   ";
@@ -166,6 +182,8 @@ public class DotsAndLines
         g[7][3]= "|   ";
       if(move.equals("C3D3"))
         g[7][4]= "|   ";
+       if(move.equals("C4D4"))
+        g[7][5]= "|   \n";
       
       if(move.equals("D0E0"))
         g[9][1]= "|   ";
@@ -175,23 +193,65 @@ public class DotsAndLines
         g[9][3]= "|   ";
       if(move.equals("D3E3"))
         g[9][4]= "|   ";
+      if(move.equals("D4E4"))
+        g[9][5]= "|   \n";
       
       turn ++;
       System.out.println();
-      System.out.println("It is turn number " + turn);
+      //System.out.println("It is turn number " + turn);
       System.out.println();
       
       for(int i = 0; i<g.length; i++)
         for(int j = 0; j<g[0].length; j++)
       {
+        
+        if (g[i][j] == ".___" && g[i+2][j] == ".___" && g[i+1][j] == "|   " && (g[i+1][j+1] == "|   " || g[i+1][j+1] == "|   \n"))
+        {
+          g[i+1][j] = "|" + lastPlayer + " ";
+          lastMove = true;
+          if (lastMove == true)
+            turn --;
+        }
+        lastMove = false;
         System.out.print(g[i][j]);
       }
     }
     
-    System.out.print(g[2][1]);
-    System.out.print(move);
+    for(int i = 0; i<g.length; i++)
+      for(int j = 0; j<g[0].length; j++)
+    {
+      if(g[i+1][j].equals("|P1 "))
+        p1Counter ++;
+      if(g[i+1][j].equals("|P2 "))
+        p2Counter ++;
+    }
+    
+    for(int i = 0; i<g.length; i++)
+      for(int j = 0; j<g[0].length; j++)
+    {
+      if(!g[i][j].equals(".   "))
+        hor = true;
+      
+      if(!g[i][j].equals("    "))
+        vert = true;
+    }            
     
     
+    if(p1Counter > p2Counter && hor == true && vert == true)
+    {
+      won = true;
+      System.out.println("Player 1 wins!!!");
+    }
+    else if(p2Counter > p1Counter && hor == true && vert == true)
+    {
+      won = true;
+      System.out.println("Player 2 wins!!!");
+    }
+    else if(p1Counter == p1Counter && hor == true && vert == true)
+    {
+      won = true;
+      System.out.println("The game is a tie.");
+    }
     
     
     

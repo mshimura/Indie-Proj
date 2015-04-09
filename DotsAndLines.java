@@ -4,39 +4,36 @@ public class DotsAndLines
 {
   public static void main (String[] args)
   {
-    String g[][] = { 
+    String g[][] = { //gameboard grid
       {  "   ", "0   ", "1   ", "2   ", "3   ", "4   \n" },
-      {  "   ", "    ", "    ", "    ", "    ", "  \n" },
-      {  "A  ", ".   ", ".   ", ".   ", ".   ", ". \n" },  
-      {  "   ", "    ", "    ", "    ", "    ", "  \n" },
-      {  "B  ", ".   ", ".   ", ".   ", ".   ", ". \n" },
-      {  "   ", "    ", "    ", "    ", "    ", "  \n" },
-      {  "C  ", ".   ", ".   ", ".   ", ".   ", ". \n" },
-      {  "   ", "    ", "    ", "    ", "    ", "  \n" },
-      {  "D  ", ".   ", ".   ", ".   ", ".   ", ". \n" },
-      {  "   ", "    ", "    ", "    ", "    ", "  \n" },
-      {  "E  ", ".   ", ".   ", ".   ", ".   ", ". \n" },
-      {  "   ", "  ", "  ", "  ", "  ", " \n" },
-      {  "   ", "  ", "  ", "  ", "  ", " \n" }
+      {  "   ", "    ", "    ", "    ", "    ", "    \n" },
+      {  "A  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },  
+      {  "   ", "    ", "    ", "    ", "    ", "    \n" },
+      {  "B  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
+      {  "   ", "    ", "    ", "    ", "    ", "    \n" },
+      {  "C  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
+      {  "   ", "    ", "    ", "    ", "    ", "    \n" },
+      {  "D  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
+      {  "   ", "    ", "    ", "    ", "    ", "    \n" },
+      {  "E  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
+      {  "   ", "    ", "    ", "    ", "    ", "    \n" },
+      {  "   ", "    ", "    ", "    ", "    ", "    \n" }
       
     }; 
     
     Scanner aa = new Scanner(System.in);
-    boolean box = false;
-    boolean p1Turn = false;
+    boolean p1Turn = false;//boolean to determine if it is player 1's or player 2's turn
     String player1 = "P1";
     String player2 = "P2";
-    String lastPlayer;
+    String lastPlayer;//Stores the player who made the move last so that their name can be added to the box if they complete it
     String move = "    ";
-    int moveCounter = 0;
-    int turn = 1;
+    int moveCounter = 0;//in to determine how many moves have been made. Optimal run through should be 40
+    int turn = 1;//int to determine if it is player 1's or player 2's turn
     boolean won = false;
-    boolean lastMove = false;
-    int p1Counter = 0;
-    int p2Counter = 0;
-    boolean check = false;
-    boolean checkSpace = true;
-    boolean checkDot = true;
+    boolean lastMove = false;//boolean used in code that allows player to go again if he completes a box
+    int p1Counter = 0;//player 1 score
+    int p2Counter = 0;//player 2 score
+    boolean check = false;//Win condition part
     
     
     System.out.println();
@@ -49,7 +46,7 @@ public class DotsAndLines
     System.out.println("Here is the gameboard:");
     System.out.println();
     
-    for(int i = 0; i<g.length; i++)
+    for(int i = 0; i<g.length; i++)//prints out gameboard
       for(int j = 0; j<g[0].length; j++)
     {
       System.out.print(g[i][j]);
@@ -58,7 +55,7 @@ public class DotsAndLines
     while(won == false)
     {
       
-      if(turn % 2 == 0)
+      if(turn % 2 == 0)//determines whose move it is by using the turn counter
       {
         lastPlayer = player2;
         p1Turn = true;
@@ -182,58 +179,6 @@ public class DotsAndLines
       if(move.equals("D4E4"))
         g[9][5]= "|   \n";
       
-      if(move.equals("HAX"))
-      {
-        g[2][1]= ".___";
-        g[2][2]= ".___"; 
-        g[2][3]= ".___"; 
-        g[2][4]= ".___"; 
-        
-        g[4][1]= ".___";
-        g[4][2]= ".___"; 
-        g[4][3]= ".___"; 
-        g[4][4]= ".___"; 
-        
-        g[6][1]= ".___";
-        g[6][2]= ".___"; 
-        g[6][3]= ".___"; 
-        g[6][4]= ".___"; 
-        
-        g[8][1]= ".___";
-        g[8][2]= ".___"; 
-        g[8][3]= ".___"; 
-        g[8][4]= ".___"; 
-        
-        g[10][1]= ".___";
-        g[10][2]= ".___"; 
-        g[10][3]= ".___"; 
-        g[10][4]= ".___"; 
-        
-        g[3][1]= "|   ";
-        g[3][2]= "|   ";
-        g[3][3]= "|   ";
-        g[3][4]= "|   ";
-        g[3][5]= "|   \n";
-        
-        g[5][1]= "|   ";
-        g[5][2]= "|   ";
-        g[5][3]= "|   ";
-        g[5][4]= "|   ";
-        g[5][5]= "|   \n";
-        
-        g[7][1]= "|   ";
-        g[7][2]= "|   ";
-        g[7][3]= "|   ";
-        g[7][4]= "|   ";
-        g[7][5]= "|   \n";
-        
-        g[9][1]= "|   ";
-        g[9][2]= "|   ";
-        g[9][3]= "|   ";
-        g[9][4]= "|   ";
-        g[9][5]= "|   \n";
-        
-      }
       
       turn ++;
       moveCounter ++;
@@ -242,7 +187,7 @@ public class DotsAndLines
       //---------------------------------------------------------------------------------------------------------------------------
       
       for(int i = 0; i<g.length; i++)
-        for(int j = 0; j<g[0].length; j++)
+        for(int j = 0; j<g[0].length; j++)//checks to see if a box has been completed
       { 
         if (g[i][j] == ".___" 
               && g[i+2][j] == ".___" 
@@ -252,14 +197,13 @@ public class DotsAndLines
           g[i+1][j] = "|" + lastPlayer + " ";
           lastMove = true;
           if (lastMove == true)
-            turn --;
-          lastMove = false;
+            turn --;//removes 1 from turn so that the player who completed the box can go again
         }
         lastMove = false;
         System.out.print(g[i][j]);
       }
       
-      for(int i = 0; i<g.length; i++)
+      for(int i = 0; i<g.length; i++)//checks the score of each player
         for(int j = 0; j<g[0].length; j++)
       {
         if(g[i][j].equals("|P1 "))
@@ -273,41 +217,7 @@ public class DotsAndLines
       
 //      ---------------------------------------------------------------------------------------------------------------------------
       
-      
-//      for(int i = 0; i<g.length; i++) // Check grid; updating checkDot 
-//      {
-//        for(int j = 0; j<g[0].length; j++)
-//        {
-//          if(g[i][j].equals(".   "))
-//          {
-//            checkDot = false;
-//            break;
-//          }
-//          if (checkDot == false)
-//            break;
-//        }    
-//      }
-//      
-//      for(int i = 0; i<g.length; i++)
-//      {
-//        for(int j = 0; j<g[0].length; j++)
-//        {
-//          if(g[i][j].equals("    "))
-//          {
-//            checkSpace = false;
-//            break;
-//          }
-//          if (checkSpace == false)
-//            break;
-//        }      
-//      }
-//      
-//      if(checkSpace == true && checkDot == true)
-//      {
-//        check = true;
-//      }
-      
-      if (p1Counter + p2Counter == 16)
+      if (p1Counter + p2Counter == 16)//win condition to see if all the boxes are filled
       {
         check = true;
       }
@@ -333,11 +243,9 @@ public class DotsAndLines
         System.out.println("Player 2 wins!!!");
       }
       
-      p1Counter = 0;
+      p1Counter = 0;//resets the p1 and p2 scores so that the score is not added to every turn if a box is not completed.
       p2Counter = 0;
       
-//      checkDot = true;
-//      checkSpace = true;
       
       
       

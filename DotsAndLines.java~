@@ -16,8 +16,8 @@ public class DotsAndLines
       {  "D  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
       {  "   ", "    ", "    ", "    ", "    ", "    \n" },
       {  "E  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
-      {  "   ", "     ", "     ", "     ", "     ", "     \n" },
-      {  "   ", "     ", "     ", "     ", "     ", "     \n" }
+      {  "   ", "  ", "  ", "  ", "  ", " \n" },
+      {  "   ", "  ", "  ", "  ", "  ", " \n" }
       
     }; 
     
@@ -28,15 +28,22 @@ public class DotsAndLines
     String player2 = "P2";
     String lastPlayer;
     String move = "    ";
+    int moveCounter = 0;
     int turn = 1;
     boolean won = false;
     boolean lastMove = false;
     int p1Counter = 0;
     int p2Counter = 0;
-    boolean hor = false;
-    boolean vert = false;
     
+    boolean checkDot = true;
+    boolean checkSpace = true;
+    boolean check = false;
     
+    System.out.println("Welcome to Dots&Lines, a 2 Player game!");
+    System.out.println("Make moves to create squares and gain points.");
+    System.out.println("If you complete a square, you get another turn.");
+    System.out.println("For example type \"A0A1\" using ALL CAPS to draw a horizontal line connecting the first two dots.");
+    System.out.println();    
     System.out.println("Here is the gameboard:");
     System.out.println();
     
@@ -60,15 +67,16 @@ public class DotsAndLines
         p1Turn = false;
       }
       
-      
+      System.out.println("There have been " + moveCounter + " moves.");
+      System.out.println();
       
       if(p1Turn == false)
       {
-        System.out.println("It is Player 1's turn, please enter your move. For example type \"A0A1.\"");
+        System.out.println("It is Player 1's turn, please enter your move.");
       }
       else if (p1Turn == true)
       {
-        System.out.println("It is Player 2's turn, please enter your move. For example type \"A0A1.\"");
+        System.out.println("It is Player 2's turn, please enter your move.");
       }
       
       //---------------------------------------------------------------------------------------------------------------------------
@@ -170,9 +178,61 @@ public class DotsAndLines
       if(move.equals("D4E4"))
         g[9][5]= "|   \n";
       
+      if(move.equals("hax"))
+      {
+       g[2][1]= ".___";
+       g[2][2]= ".___"; 
+       g[2][3]= ".___"; 
+       g[2][4]= ".___"; 
+       
+       g[4][1]= ".___";
+       g[4][2]= ".___"; 
+       g[4][3]= ".___"; 
+       g[4][4]= ".___"; 
+       
+       g[6][1]= ".___";
+       g[6][2]= ".___"; 
+       g[6][3]= ".___"; 
+       g[6][4]= ".___"; 
+       
+       g[8][1]= ".___";
+       g[8][2]= ".___"; 
+       g[8][3]= ".___"; 
+       g[8][4]= ".___"; 
+       
+       g[10][1]= ".___";
+       g[10][2]= ".___"; 
+       g[10][3]= ".___"; 
+       g[10][4]= ".___"; 
+       
+       g[3][1]= "|   ";
+       g[3][2]= "|   ";
+       g[3][3]= "|   ";
+       g[3][4]= "|   ";
+       g[3][5]= "|   \n";
+       
+       g[5][1]= "|   ";
+       g[5][2]= "|   ";
+       g[5][3]= "|   ";
+       g[5][4]= "|   ";
+       g[5][5]= "|   \n";
+       
+       g[7][1]= "|   ";
+       g[7][2]= "|   ";
+       g[7][3]= "|   ";
+       g[7][4]= "|   ";
+       g[7][5]= "|   \n";
+       
+       g[9][1]= "|   ";
+       g[9][2]= "|   ";
+       g[9][3]= "|   ";
+       g[9][4]= "|   ";
+       g[9][5]= "|   \n";
+       
+      }
+      
       turn ++;
-      System.out.println();
-      //System.out.println("It is turn number " + turn);
+      moveCounter ++;
       System.out.println();
       
       //---------------------------------------------------------------------------------------------------------------------------
@@ -194,8 +254,6 @@ public class DotsAndLines
         System.out.print(g[i][j]);
       }
       
-      //Score is glitchy so that it adds to score every turn
-      
       for(int i = 0; i<g.length; i++)
         for(int j = 0; j<g[0].length; j++)
       {
@@ -206,40 +264,49 @@ public class DotsAndLines
       }
       
       System.out.println("Player 1 has a score of " + p1Counter + " and Player 2 has a score of " + p2Counter +".");
+      System.out.println(check);
       System.out.println();
       
 //      ---------------------------------------------------------------------------------------------------------------------------
       
-//      for(int i = 0; i<g.length; i++)
-//        for(int j = 0; j<g[0].length; j++)
-//      {
-//        if(g[i][j] != ".   ")
-//          hor = true;
-//        else
-//          hor = false; 
-//      }           
-//      
-//      for(int i = 0; i<g.length; i++)
-//        for(int j = 0; j<g[0].length; j++)
-//      { 
-//        if(g[i][j] != "    ")
-//          vert = true;
-//        else
-//          vert = false;
-//      }         
       
-      if(p1Counter == p2Counter && hor == true && vert == true)
+      for(int i = 0; i<g.length; i++)
+      {
+        for(int j = 0; j<g[0].length; j++)
+        {
+          if(g[i][j].equals(".   "))
+            checkDot = false;
+        }      
+      }
+      
+      for(int i = 0; i<g.length; i++)
+      {
+        for(int j = 0; j<g[0].length; j++)
+        {
+          if(g[i][j].equals("    "))
+            checkSpace = false;
+        }      
+      }
+      
+      if(checkSpace == true && checkDot == true)
+      {
+        check = true;
+      }
+      
+      //      ---------------------------------------------------------------------------------------------------------------------------
+      
+      if(p1Counter == p2Counter && check == true)
       {
         won = true;
         System.out.println("The game is a tie.");
       }
       
-      if(p1Counter > p2Counter && hor == true && vert == true)
+      if(p1Counter > p2Counter && check == true)
       {
         won = true;
         System.out.println("Player 1 wins!!!");
       }
-      if(p2Counter > p1Counter && hor == true && vert == true)
+      if(p2Counter > p1Counter && check == true)
       {
         won = true;
         System.out.println("Player 2 wins!!!");
@@ -248,19 +315,15 @@ public class DotsAndLines
       p1Counter = 0;
       p2Counter = 0;
       
+      checkDot = true;
+      checkSpace = true;
+      
+      
+      
       //---------------------------------------------------------------------------------------------------------------------------
       
     }
     
-    
-    
-    
-    
-//rows = Integer.parseInt(rows);
-//columns = Integer.parseInt(columns);
-    
-    //int[][] a = new int[ rows ][ columns ];
-    //talk to nick, leo, bobby
     
   }
 }

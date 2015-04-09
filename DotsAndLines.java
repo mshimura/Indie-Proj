@@ -6,18 +6,18 @@ public class DotsAndLines
   {
     String g[][] = { 
       {  "   ", "0   ", "1   ", "2   ", "3   ", "4   \n" },
-      {  "   ", "    ", "    ", "    ", "    ", "    \n" },
-      {  "A  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },  
-      {  "   ", "    ", "    ", "    ", "    ", "    \n" },
-      {  "B  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
-      {  "   ", "    ", "    ", "    ", "    ", "    \n" },
-      {  "C  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
-      {  "   ", "    ", "    ", "    ", "    ", "    \n" },
-      {  "D  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
-      {  "   ", "    ", "    ", "    ", "    ", "    \n" },
-      {  "E  ", ".   ", ".   ", ".   ", ".   ", ".   \n" },
-      {  "   ", "     ", "     ", "     ", "     ", "     \n" },
-      {  "   ", "     ", "     ", "     ", "     ", "     \n" }
+      {  "   ", "    ", "    ", "    ", "    ", "  \n" },
+      {  "A  ", ".   ", ".   ", ".   ", ".   ", ". \n" },  
+      {  "   ", "    ", "    ", "    ", "    ", "  \n" },
+      {  "B  ", ".   ", ".   ", ".   ", ".   ", ". \n" },
+      {  "   ", "    ", "    ", "    ", "    ", "  \n" },
+      {  "C  ", ".   ", ".   ", ".   ", ".   ", ". \n" },
+      {  "   ", "    ", "    ", "    ", "    ", "  \n" },
+      {  "D  ", ".   ", ".   ", ".   ", ".   ", ". \n" },
+      {  "   ", "    ", "    ", "    ", "    ", "  \n" },
+      {  "E  ", ".   ", ".   ", ".   ", ".   ", ". \n" },
+      {  "   ", "  ", "  ", "  ", "  ", " \n" },
+      {  "   ", "  ", "  ", "  ", "  ", " \n" }
       
     }; 
     
@@ -34,10 +34,18 @@ public class DotsAndLines
     boolean lastMove = false;
     int p1Counter = 0;
     int p2Counter = 0;
-    boolean hor = false;
-    boolean vert = false;
+    boolean check = false;
+    boolean checkSpace = true;
+    boolean checkDot = true;
     
     
+    System.out.println();
+    System.out.println("Welcome to Dots&Lines, a 2 Player game!");
+    System.out.println("Make moves to create squares and gain points.");
+    System.out.println("If you complete a square, you get another turn.");
+    System.out.println("For example type \"A0A1\" to draw a horizontal line connecting the first two dots.");
+    System.out.println("Make moves left to right, and up to down. Have fun!");
+    System.out.println();    
     System.out.println("Here is the gameboard:");
     System.out.println();
     
@@ -66,21 +74,23 @@ public class DotsAndLines
       
       if(p1Turn == false)
       {
-        System.out.println("It is Player 1's turn, please enter your move. For example type \"A0A1.\"");
+        System.out.println("It is Player 1's turn, please enter your move.");
       }
       else if (p1Turn == true)
       {
-        System.out.println("It is Player 2's turn, please enter your move. For example type \"A0A1.\"");
+        System.out.println("It is Player 2's turn, please enter your move.");
       }
       
       //---------------------------------------------------------------------------------------------------------------------------
       
       move = aa.nextLine();
+      move = move.toUpperCase();
       
       if (move.length() == 0)
       {
         System.out.println("Please give a response.");
         turn--;
+        moveCounter --;
       }
       
       if(move.equals("A0A1"))
@@ -172,6 +182,59 @@ public class DotsAndLines
       if(move.equals("D4E4"))
         g[9][5]= "|   \n";
       
+      if(move.equals("HAX"))
+      {
+        g[2][1]= ".___";
+        g[2][2]= ".___"; 
+        g[2][3]= ".___"; 
+        g[2][4]= ".___"; 
+        
+        g[4][1]= ".___";
+        g[4][2]= ".___"; 
+        g[4][3]= ".___"; 
+        g[4][4]= ".___"; 
+        
+        g[6][1]= ".___";
+        g[6][2]= ".___"; 
+        g[6][3]= ".___"; 
+        g[6][4]= ".___"; 
+        
+        g[8][1]= ".___";
+        g[8][2]= ".___"; 
+        g[8][3]= ".___"; 
+        g[8][4]= ".___"; 
+        
+        g[10][1]= ".___";
+        g[10][2]= ".___"; 
+        g[10][3]= ".___"; 
+        g[10][4]= ".___"; 
+        
+        g[3][1]= "|   ";
+        g[3][2]= "|   ";
+        g[3][3]= "|   ";
+        g[3][4]= "|   ";
+        g[3][5]= "|   \n";
+        
+        g[5][1]= "|   ";
+        g[5][2]= "|   ";
+        g[5][3]= "|   ";
+        g[5][4]= "|   ";
+        g[5][5]= "|   \n";
+        
+        g[7][1]= "|   ";
+        g[7][2]= "|   ";
+        g[7][3]= "|   ";
+        g[7][4]= "|   ";
+        g[7][5]= "|   \n";
+        
+        g[9][1]= "|   ";
+        g[9][2]= "|   ";
+        g[9][3]= "|   ";
+        g[9][4]= "|   ";
+        g[9][5]= "|   \n";
+        
+      }
+      
       turn ++;
       moveCounter ++;
       System.out.println();
@@ -183,13 +246,14 @@ public class DotsAndLines
       { 
         if (g[i][j] == ".___" 
               && g[i+2][j] == ".___" 
-              && (g[i+1][j] == "|   ") 
+              && (g[i+1][j] == "|   " ) 
               && (g[i+1][j+1] == "|   " || g[i+1][j+1] == "|   \n" || g[i+1][j+1].equals("|P1 ") || g[i+1][j+1].equals("|P2 ")))
         {
           g[i+1][j] = "|" + lastPlayer + " ";
           lastMove = true;
           if (lastMove == true)
             turn --;
+          lastMove = false;
         }
         lastMove = false;
         System.out.print(g[i][j]);
@@ -209,36 +273,61 @@ public class DotsAndLines
       
 //      ---------------------------------------------------------------------------------------------------------------------------
       
-//      for(int i = 0; i<g.length; i++)
-//        for(int j = 0; j<g[0].length; j++)
+      
+//      for(int i = 0; i<g.length; i++) // Check grid; updating checkDot 
 //      {
-//        if(g[i][j].equals(".   "))
-//          hor = false;
-//        else
-//          hor = true; 
-//      }           
+//        for(int j = 0; j<g[0].length; j++)
+//        {
+//          if(g[i][j].equals(".   "))
+//          {
+//            checkDot = false;
+//            break;
+//          }
+//          if (checkDot == false)
+//            break;
+//        }    
+//      }
 //      
 //      for(int i = 0; i<g.length; i++)
+//      {
 //        for(int j = 0; j<g[0].length; j++)
-//      { 
-//        if(g[i][j].equals("    "))
-//          vert = false;
-//        else
-//          vert = true;
-//      }         
+//        {
+//          if(g[i][j].equals("    "))
+//          {
+//            checkSpace = false;
+//            break;
+//          }
+//          if (checkSpace == false)
+//            break;
+//        }      
+//      }
+//      
+//      if(checkSpace == true && checkDot == true)
+//      {
+//        check = true;
+//      }
       
-      if(p1Counter == p2Counter && hor == true && vert == true)
+      if (p1Counter + p2Counter == 16)
+      {
+        check = true;
+      }
+      
+      //      ---------------------------------------------------------------------------------------------------------------------------
+      
+      
+      
+      if(p1Counter == p2Counter && check == true)
       {
         won = true;
         System.out.println("The game is a tie.");
       }
       
-      if(p1Counter > p2Counter && hor == true && vert == true)
+      if(p1Counter > p2Counter && check == true)
       {
         won = true;
         System.out.println("Player 1 wins!!!");
       }
-      if(p2Counter > p1Counter && hor == true && vert == true)
+      if(p2Counter > p1Counter && check == true)
       {
         won = true;
         System.out.println("Player 2 wins!!!");
@@ -247,19 +336,15 @@ public class DotsAndLines
       p1Counter = 0;
       p2Counter = 0;
       
+//      checkDot = true;
+//      checkSpace = true;
+      
+      
+      
       //---------------------------------------------------------------------------------------------------------------------------
       
     }
     
-    
-    
-    
-    
-//rows = Integer.parseInt(rows);
-//columns = Integer.parseInt(columns);
-    
-    //int[][] a = new int[ rows ][ columns ];
-    //talk to nick, leo, bobby
     
   }
 }

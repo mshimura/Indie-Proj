@@ -41,7 +41,7 @@ public class DotsAndLines
     System.out.println("Make moves to create squares and gain points.");
     System.out.println("If you complete a square, you get another turn.");
     System.out.println("For example type \"A0A1\" to draw a horizontal line connecting the first two dots.");
-    System.out.println("Make moves left to right, and up to down. Have fun!");
+    System.out.println("Make moves LEFT TO RIGHT, and UP TO DOWN. Have fun!");
     System.out.println();    
     System.out.println("Here is the gameboard:");
     System.out.println();
@@ -226,7 +226,7 @@ public class DotsAndLines
       
       
       
-      if(p1Counter == p2Counter && check == true)
+      if(p1Counter == p2Counter && check == true)//win condition check
       {
         won = true;
         System.out.println("The game is a tie.");
